@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   Entity,
   Index,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import bcrypt from "bcrypt"
+import { Customer } from "./Customer";
 
 @Entity("users")
 export class User extends BaseEntity {
@@ -38,8 +40,17 @@ export class User extends BaseEntity {
   @Column({ nullable: false })
   password: string;
 
+  @Column({ nullable: false })
+  fullName: string;
+
   @Column({ nullable: true })
   businessName: string;
+
+  @Column({ nullable: true })
+  phoneNumber: string;
+
+  @OneToMany(() => Customer, (customer) => customer.user)
+  customers: Customer[]
 
   @CreateDateColumn()
   created_at: Date;

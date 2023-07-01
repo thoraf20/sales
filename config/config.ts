@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm"
 import dotenv from 'dotenv'
 import { User } from "../entity/User"
+import { Customer } from "../entity/Customer"
 
 dotenv.config()
 
@@ -11,7 +12,7 @@ export const myDataSource = new DataSource({
     username: `${process.env.DB_USERNAME}`,
     password: `${process.env.DB_PASSWORD}`,
     database: `${process.env.DB_NAME}`,
-    entities: [User],
+    entities: [User, Customer],
     migrations: [/*...*/],
     // migrationsTableName: "custom_migration_table",
     logging: true,
