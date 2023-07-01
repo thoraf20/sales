@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "./User";
+import { Sale } from "./Sales";
 
 @Entity("customers")
 export class Customer extends BaseEntity {
@@ -32,6 +34,9 @@ export class Customer extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.customers)
   user: User
+
+  @OneToMany(() => Sale, (sale) => sale.customers)
+  sales: Sale[]
 
   @CreateDateColumn()
   created_at: Date;
